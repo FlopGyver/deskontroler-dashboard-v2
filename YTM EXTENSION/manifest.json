@@ -1,0 +1,55 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Music Dashboard Controller",
+  "version": "1.0.1",
+  "description": "Contrôle YouTube Music depuis votre dashboard personnel",
+  
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "scripting"
+  ],
+  
+  "host_permissions": [
+    "https://music.youtube.com/*",
+    "http://192.168.1.27:5173/*",
+    "http://192.168.1.181:5173/*",
+    "http://localhost:5173/*"
+  ],
+  
+  "externally_connectable": {
+    "matches": [
+      "http://192.168.1.27:5173/*",
+      "http://192.168.1.181:5173/*",
+      "http://localhost:5173/*"
+    ]
+  },
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "YouTube Music Controller"
+  },
+  
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["https://music.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  
+  "web_accessible_resources": [
+    {
+      "resources": ["injected.js"],
+      "matches": ["https://music.youtube.com/*"]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+# /etc/systemd/system/kde-phone-mqtt.service
+[Unit]
+Description=KDE Connect → MQTT (phone telemetry)
+Wants=network-online.target
+After=network-online.target
+# Optionnel si un service kdeconnect existe
+#After=kdeconnect.service
+
+[Service]
+Type=simple
+# Charge les variables d'environnement si présentes
+EnvironmentFile=-/etc/default/kde-phone-mqtt
+ExecStart=/usr/local/bin/kde_phone_mqtt.sh
+Restart=always
+RestartSec=2
+# Ajuster l'utilisateur/groupe si souhaité (ex: pi)
+User=pi
+Group=pi
+Nice=5
+IOSchedulingClass=best-effort
+IOSchedulingPriority=6
+
+# Journal visible via: journalctl -u kde-phone-mqtt.service -f
+[Install]
+WantedBy=multi-user.target

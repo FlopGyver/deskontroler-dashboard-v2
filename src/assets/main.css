@@ -1,0 +1,65 @@
+@import './base.css';
+
+/* ——— Palette & base ——— */
+:root{
+  /* Carbone + surfaces */
+  --bg:#0c0d0f;        /* fond global */
+  --surface:#131417;   /* surface nav */
+  --card:linear-gradient(135deg, #202020 0%, #252525 100%);      /* cartes */
+  --ink:#197a4d;
+  --muted:#f7f7f7;
+
+  /* Accent (texte) */
+  --emerald:#197a4d;   /* émeraude */
+}
+
+/* Toujours réserver l’espace du scroll pour éviter le shift horizontal */
+html{ height:100%; scrollbar-gutter: stable both-edges; }
+body{
+  min-height:100%; margin:0; overflow-y:scroll;
+  background:var(--bg); color:var(--ink);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+/* Le #app par défaut de Vite n’est pas utilisé ici pour la largeur */
+#app{
+  margin:0; padding:0; font-weight:normal;
+  max-width:none;   /* on ne veut pas le 1280px du scaffold */
+}
+
+/* Liens (optionnel) */
+a, .green{
+  text-decoration:none;
+  color:var(--emerald);
+  transition:.2s;
+  padding:3px;
+}
+@media (hover:hover){
+  a:hover{ color:var(--emerald); background:transparent; }
+}
+
+/* ——— Shell centré + largeur verrouillée ——— */
+.app-shell{
+  min-height:100vh;
+  display:flex; 
+  padding:.5rem;
+  justify-content:center; 
+  background:var(--bg);
+}
+
+/* 300px max pour un écran 320px ; mini 280px pour marges sûres */
+.app-wrap{
+  width: clamp(280px, 96vw, 300px);
+  margin-inline:auto;
+}
+
+/* Légère réduction de la base typographique sur très petits écrans */
+@media (max-width:360px){
+  html{ font-size:14px; } /* 16 → 14 */
+}
+
+/* On supprime le layout desktop du scaffold Vite qui cassait le centrage */
+@media (min-width:1024px){
+  body{ display:block; place-items:unset; }
+  #app{ display:block; padding:0; }
+}

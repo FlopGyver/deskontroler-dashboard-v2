@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { 
+      width: 300px; 
+      padding: 16px; 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .status {
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+    .status.connected {
+      background: #e8f5e8;
+      border: 1px solid #4caf50;
+      color: #2e7d32;
+    }
+    .status.disconnected {
+      background: #ffeaea;
+      border: 1px solid #f44336;
+      color: #c62828;
+    }
+    .info {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.4;
+    }
+    .logo {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    .title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .test-buttons {
+      margin: 12px 0;
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+    }
+    .test-btn {
+      background: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 6px 12px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .test-btn:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">🎵</div>
+    <div class="title">YouTube Music Controller</div>
+  </div>
+  
+  <div id="status" class="status disconnected">
+    <div>État: Vérification...</div>
+  </div>
+
+  <div class="test-buttons">
+    <button class="test-btn" id="testBtn">Test</button>
+    <button class="test-btn" id="playBtn">▶️</button>
+    <button class="test-btn" id="nextBtn">⏭️</button>
+  </div>
+  
+  <div class="info">
+    <strong>Instructions:</strong><br>
+    1. Ouvrez YouTube Music<br>
+    2. Lancez une musique<br>
+    3. Utilisez votre dashboard pour contrôler<br><br>
+    
+    <strong>Permissions:</strong><br>
+    • Accès à music.youtube.com<br>
+    • Communication avec votre dashboard<br><br>
+    
+    <strong>Développé pour:</strong><br>
+    Dashboard IoT Flo 🏠
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

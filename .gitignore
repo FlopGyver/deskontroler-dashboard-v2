@@ -1,0 +1,62 @@
+# ==================================================
+# ÉTAPE 2 : VÉRIFICATION .GITIGNORE
+# ==================================================
+
+# Vérifier que le .gitignore existe
+cat .gitignore
+
+# Si le .gitignore n'est pas assez complet, le compléter avec :
+echo "# Variables d'environnement sensibles
+.env
+.env.local
+.env.production
+*.env
+
+# Dependencies Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+
+# Build outputs
+dist/
+build/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+env/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs/
+
+# Fichiers temporaires
+*.tmp
+*.bak
+*~" >> .gitignore
+
+# ==================================================
+# COMMANDES DE VÉRIFICATION SÉCURITÉ
+# ==================================================
+
+# Vérifier qu'aucun fichier sensible ne sera commité
+echo "🔍 Vérification des fichiers sensibles..."
+
+# Cette commande doit retourner "The following paths are ignored by one of your .gitignore files:"
+git check-ignore .env.local 2>/dev/null && echo "✅ .env.local correctement ignoré" || echo "⚠️ .env.local pourrait être commité!"
+
+# Rechercher des mots de passe ou clés dans le code
+echo "🔍 Recherche de secrets potentiels..."
+grep -r -i "password\|secret\|key.*=" . --exclude-dir=.git --exclude-dir=node_modules | grep -v ".gitignore" | grep -v "example"
+
+# Si cette commande trouve quelque chose, STOP et nettoie avant de continuer !
